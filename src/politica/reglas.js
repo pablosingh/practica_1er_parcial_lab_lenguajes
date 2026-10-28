@@ -1,22 +1,27 @@
+const CARACTERES_ESPECIALES_ARRAY = "!#$%&=".split("");
+const NUMEROS_ARRAY = ['0','1','2','3','4','5','6','7','8','9'];
+
 const reglas = [
   {
     name: "longitud",
-    func: ()=> console.log("longitud"),
+    func: (pwd) => pwd.length >= 8
   },
   {
     name: "Espacios en blanco",
-    func: ()=> console.log("Espacios en blanco"),
+    func: (pwd) => pwd.includes(" "),
   },
   {
     name: "Caracteres Especiales",
-    func: ()=> console.log("Caracteres Especiales"),
+    func: (pwd) => CARACTERES_ESPECIALES_ARRAY.some( c => pwd.includes(c))
   },
   {
     name: "Al menos un numero",
-    func: ()=> console.log("Al menos un numero"),
+    func: (pwd) => NUMEROS_ARRAY.some( n => pwd.includes(n))
   },
   {
-    name: "Regla 4",
-    func: ()=> console.log("Regla 4"),
+    name: "Ultimo caracter no especial",
+    func: (pwd) => !CARACTERES_ESPECIALES_ARRAY.some( c => pwd[pwd.length-1] == c),
   },
 ]
+
+module.exports = reglas;
